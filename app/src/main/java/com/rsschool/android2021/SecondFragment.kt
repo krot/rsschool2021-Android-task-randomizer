@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 
 class SecondFragment : Fragment() {
@@ -32,13 +33,16 @@ class SecondFragment : Fragment() {
         result?.text = generate(min, max).toString()
 
         backButton?.setOnClickListener {
-            // TODO: implement back
+            (activity as MainActivity).openFirst(result?.text.toString().toInt())
+        }
+
+        activity?.onBackPressedDispatcher?.addCallback {
+            (activity as MainActivity).openFirst(result?.text.toString().toInt())
         }
     }
 
     private fun generate(min: Int, max: Int): Int {
-        // TODO: generate random number
-        return 0
+        return (min..max).random()
     }
 
     companion object {
@@ -47,9 +51,9 @@ class SecondFragment : Fragment() {
         fun newInstance(min: Int, max: Int): SecondFragment {
             val fragment = SecondFragment()
             val args = Bundle()
-
-            // TODO: implement adding arguments
-
+            args.putInt(SecondFragment.MIN_VALUE_KEY, min)
+            args.putInt(SecondFragment.MAX_VALUE_KEY, max)
+            fragment.arguments = args
             return fragment
         }
 
