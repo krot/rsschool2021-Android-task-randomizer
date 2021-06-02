@@ -58,7 +58,7 @@ class FirstFragment : Fragment() {
                     } else if (min > max) {
                         minInput.setError("Min must be smaller than Max");
                     } else {
-                        (getActivity() as MainActivity).openSecond(min.toInt(), max.toInt())
+                        (getActivity() as OpenFragmentInterface).openSecond(min.toInt(), max.toInt())
                     }
                 }
                 else {

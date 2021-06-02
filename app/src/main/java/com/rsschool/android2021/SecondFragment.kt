@@ -33,11 +33,11 @@ class SecondFragment : Fragment() {
         result?.text = generate(min, max).toString()
 
         backButton?.setOnClickListener {
-            (activity as MainActivity).openFirst(result?.text.toString().toInt())
+            (activity as OpenFragmentInterface).openFirst(result?.text.toString().toInt())
         }
 
         activity?.onBackPressedDispatcher?.addCallback {
-            (activity as MainActivity).openFirst(result?.text.toString().toInt())
+            (activity as OpenFragmentInterface).openFirst(result?.text.toString().toInt())
         }
     }
 
